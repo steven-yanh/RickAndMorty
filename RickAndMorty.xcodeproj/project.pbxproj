@@ -15,6 +15,11 @@
 		3B774CCE297E41C000575668 /* RMCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B774CCD297E41C000575668 /* RMCharacter.swift */; };
 		3B774CD0297E420100575668 /* RMLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B774CCF297E420100575668 /* RMLocation.swift */; };
 		3B774CD2297E421800575668 /* RMEpisode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B774CD1297E421800575668 /* RMEpisode.swift */; };
+		3B774CD7297E436900575668 /* RMTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B774CD6297E436900575668 /* RMTabBarViewController.swift */; };
+		3B774CD9297E439000575668 /* RMCharacterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B774CD8297E439000575668 /* RMCharacterViewController.swift */; };
+		3B774CDB297E43B600575668 /* RMLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B774CDA297E43B500575668 /* RMLocationViewController.swift */; };
+		3B774CDD297E43C500575668 /* RMEpisodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B774CDC297E43C500575668 /* RMEpisodeViewController.swift */; };
+		3B774CDF297E43D300575668 /* RMSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B774CDE297E43D300575668 /* RMSettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +33,11 @@
 		3B774CCD297E41C000575668 /* RMCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacter.swift; sourceTree = "<group>"; };
 		3B774CCF297E420100575668 /* RMLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocation.swift; sourceTree = "<group>"; };
 		3B774CD1297E421800575668 /* RMEpisode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEpisode.swift; sourceTree = "<group>"; };
+		3B774CD6297E436900575668 /* RMTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMTabBarViewController.swift; sourceTree = "<group>"; };
+		3B774CD8297E439000575668 /* RMCharacterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterViewController.swift; sourceTree = "<group>"; };
+		3B774CDA297E43B500575668 /* RMLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMLocationViewController.swift; sourceTree = "<group>"; };
+		3B774CDC297E43C500575668 /* RMEpisodeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMEpisodeViewController.swift; sourceTree = "<group>"; };
+		3B774CDE297E43D300575668 /* RMSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMSettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +96,7 @@
 			isa = PBXGroup;
 			children = (
 				3B725A45297E36F300A137FE /* ViewController.swift */,
+				3B774CD3297E429D00575668 /* MainController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -119,6 +130,18 @@
 				3B774CCF297E420100575668 /* RMLocation.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		3B774CD3297E429D00575668 /* MainController */ = {
+			isa = PBXGroup;
+			children = (
+				3B774CD6297E436900575668 /* RMTabBarViewController.swift */,
+				3B774CD8297E439000575668 /* RMCharacterViewController.swift */,
+				3B774CDA297E43B500575668 /* RMLocationViewController.swift */,
+				3B774CDC297E43C500575668 /* RMEpisodeViewController.swift */,
+				3B774CDE297E43D300575668 /* RMSettingViewController.swift */,
+			);
+			path = MainController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -191,10 +214,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3B774CDB297E43B600575668 /* RMLocationViewController.swift in Sources */,
+				3B774CDF297E43D300575668 /* RMSettingViewController.swift in Sources */,
 				3B774CD2297E421800575668 /* RMEpisode.swift in Sources */,
 				3B774CCE297E41C000575668 /* RMCharacter.swift in Sources */,
+				3B774CDD297E43C500575668 /* RMEpisodeViewController.swift in Sources */,
 				3B725A46297E36F300A137FE /* ViewController.swift in Sources */,
 				3B774CD0297E420100575668 /* RMLocation.swift in Sources */,
+				3B774CD7297E436900575668 /* RMTabBarViewController.swift in Sources */,
+				3B774CD9297E439000575668 /* RMCharacterViewController.swift in Sources */,
 				3B725A42297E36F300A137FE /* AppDelegate.swift in Sources */,
 				3B725A44297E36F300A137FE /* SceneDelegate.swift in Sources */,
 			);
