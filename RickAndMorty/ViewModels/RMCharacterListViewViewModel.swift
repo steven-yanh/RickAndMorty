@@ -7,8 +7,32 @@
 
 import UIKit
 
-final class RMCharacterListViewViewModel: NSObject, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+final class RMCharacterListViewViewModel: NSObject,
+                                          UICollectionViewDataSource,
+                                          UICollectionViewDelegate,
+                                          UICollectionViewDelegateFlowLayout {
+    var characters = [RMCharacter]()
     
+    override init() {
+        super.init()
+        fetchCharacters()
+    }
+    
+    //MARK: - Private
+    
+    private func fetchCharacters() {
+        RMService.shared.execute(.allCharacters, expecting: RMCharacterList.self) { result in
+            switch result {
+            case .success(let result):
+                self.characters = result.results
+            case.failure(let error):
+                print(error.localizedDescription)
+                break
+            }
+        }
+    }
+    
+    //MARK: - Protocol implementation
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         cell.backgroundColor = .green
