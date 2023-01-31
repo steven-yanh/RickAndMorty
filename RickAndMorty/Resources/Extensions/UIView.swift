@@ -24,4 +24,14 @@ extension UIView {
             bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
+    func centerX(to view: UIView) {
+        NSLayoutConstraint.activate([
+            centerXAnchor.constraint(equalTo: view.centerXAnchor)
+        ])
+    }
+    func centerY(to view: UIView) {
+        NSLayoutConstraint.activate([
+            centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+    }
 }

@@ -17,7 +17,7 @@ final class RMCharacterListView: UIView {
         layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collectionView.register(RMCharacterListCell.self, forCellWithReuseIdentifier: RMCharacterListCell.cellIdentifier)
         collectionView.alpha = 0
         return collectionView
     }()

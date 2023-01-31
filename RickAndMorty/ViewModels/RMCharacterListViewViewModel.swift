@@ -33,9 +33,14 @@ final class RMCharacterListViewViewModel: NSObject,
     }
     
     //MARK: - Protocol implementation
+    
+    //MARK: - DataSource
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
-        cell.backgroundColor = .green
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RMCharacterListCell.cellIdentifier, for: indexPath) as? RMCharacterListCell else {
+            return UICollectionViewCell()
+        }
+        let viewModel = RMCharacterListCellViewModel("Steven", .alive, URL(string: "https://rickandmortyapi.com/api/character/avatar/2.jpeg"))
+        cell.configure(with: viewModel)
         return cell
     }
     
@@ -43,6 +48,12 @@ final class RMCharacterListViewViewModel: NSObject,
         return 20
     }
     
+    //MARK: - Delegate
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
+    }
+    
+    //MARK: - CollectionViewDelegateFlowLayout
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let width = (K.screenWidth - 30) / 2
         let height = width * 1.5
