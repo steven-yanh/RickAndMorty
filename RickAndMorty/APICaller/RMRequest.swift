@@ -55,4 +55,11 @@ class RMRequest {
         self.queryParameters = queryParameters
     }
     
+    //MARK: - Quick request
+    static let allCharacters = RMRequest(endpoint: .character)
+    
+    static let allLocations = RMRequest(endpoint: .location)
+    
+    static let allEpisodes = RMRequest(endpoint: .episode)
+    
 }
