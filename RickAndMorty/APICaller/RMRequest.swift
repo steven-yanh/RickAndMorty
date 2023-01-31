@@ -7,7 +7,7 @@
 
 import Foundation
 
-class RMRequest {
+final class RMRequest {
     
     private let baseUrl = "https://rickandmortyapi.com/api/"
     

@@ -7,12 +7,14 @@
 
 import UIKit
 
-class RMCharacterListView: UIView {
+final class RMCharacterListView: UIView {
     
     private let viewModel = RMCharacterListViewViewModel()
     
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: "cell")
@@ -32,9 +34,22 @@ class RMCharacterListView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         layout()
         spinner.startAnimating()
+        setupCollectionView()
     }
     required init?(coder: NSCoder) {
         fatalError("Unsupported")
+    }
+    //MARK: - Private
+    private func setupCollectionView() {
+        collectionView.dataSource = viewModel
+        collectionView.delegate = viewModel
+        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
+            self.spinner.stopAnimating()
+            
+            UIView.animate(withDuration: 0.5) {
+                self.collectionView.alpha = 1
+            }
+        }
     }
     
     //MARK: - Layout
