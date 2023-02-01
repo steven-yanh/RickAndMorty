@@ -34,6 +34,7 @@ final class RMCharacterListView: UIView {
         translatesAutoresizingMaskIntoConstraints = false
         layout()
         spinner.startAnimating()
+        viewModel.delegate = self
         setupCollectionView()
     }
     required init?(coder: NSCoder) {
@@ -41,18 +42,34 @@ final class RMCharacterListView: UIView {
     }
     //MARK: - Private
     private func setupCollectionView() {
+        
         collectionView.dataSource = viewModel
         collectionView.delegate = viewModel
-        DispatchQueue.main.asyncAfter(deadline: .now()+2) {
-            self.spinner.stopAnimating()
+        
+       
+    }
+}
+
+//MARK: - RMCharacterListViewViewModelDelegate
+extension RMCharacterListView: RMCharacterListViewViewModelDelegate {
+    func didFetchInitalCharacters() {
+         
+        DispatchQueue.main.async { [weak self] in
+            self?.collectionView.reloadData()
+        }
+        
+        DispatchQueue.main.async { [weak self] in
+            self?.spinner.stopAnimating()
             
             UIView.animate(withDuration: 0.5) {
-                self.collectionView.alpha = 1
+                self?.collectionView.alpha = 1
             }
         }
     }
-    
-    //MARK: - Layout
+}
+
+//MARK: - Layout
+extension RMCharacterListView {
     private func layout() {
         addSubviews(collectionView, spinner)
         

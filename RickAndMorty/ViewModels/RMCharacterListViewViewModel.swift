@@ -7,11 +7,26 @@
 
 import UIKit
 
+protocol RMCharacterListViewViewModelDelegate: AnyObject {
+    func didFetchInitalCharacters()
+}
+
 final class RMCharacterListViewViewModel: NSObject,
                                           UICollectionViewDataSource,
                                           UICollectionViewDelegate,
                                           UICollectionViewDelegateFlowLayout {
-    var characters = [RMCharacter]()
+    private var info: RMCharacterListInfo?
+    private var characters: [RMCharacter] = [] {
+        didSet {
+            let viewModels = characters.map({
+                return RMCharacterListCellViewModel($0.name, $0.status, URL(string: $0.image))
+            })
+            cellViewModels.append(contentsOf: viewModels)
+        }
+    }
+    private var cellViewModels: [RMCharacterListCellViewModel] = []
+    
+    weak var delegate: RMCharacterListViewViewModelDelegate?
     
     override init() {
         super.init()
@@ -21,10 +36,12 @@ final class RMCharacterListViewViewModel: NSObject,
     //MARK: - Private
     
     private func fetchCharacters() {
-        RMService.shared.execute(.allCharacters, expecting: RMCharacterList.self) { result in
+        RMService.shared.execute(.allCharacters, expecting: RMCharacterList.self) { [weak self] result in
             switch result {
             case .success(let result):
-                self.characters = result.results
+                self?.info = result.info
+                self?.characters = result.results
+                self?.delegate?.didFetchInitalCharacters()
             case.failure(let error):
                 print(error.localizedDescription)
                 break
@@ -39,13 +56,13 @@ final class RMCharacterListViewViewModel: NSObject,
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RMCharacterListCell.cellIdentifier, for: indexPath) as? RMCharacterListCell else {
             return UICollectionViewCell()
         }
-        let viewModel = RMCharacterListCellViewModel("Steven", .alive, URL(string: "https://rickandmortyapi.com/api/character/avatar/2.jpeg"))
+        let viewModel = cellViewModels[indexPath.row]
         cell.configure(with: viewModel)
         return cell
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 20
+        return cellViewModels.count
     }
     
     //MARK: - Delegate
