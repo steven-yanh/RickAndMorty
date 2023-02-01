@@ -34,10 +34,12 @@ class RMCharacterListCell: UICollectionViewCell {
         return label
     }()
     
+    //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.backgroundColor = .secondarySystemBackground
         layout()
+        style()
     }
     
     required init?(coder: NSCoder) {
@@ -64,6 +66,16 @@ class RMCharacterListCell: UICollectionViewCell {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    //MARK: - Styling
+    private func style() {
+        contentView.layer.shadowColor = UIColor.systemGray2.cgColor
+        contentView.layer.shadowOpacity = 0.7
+        contentView.layer.shadowOffset = CGSize(width: -5, height: 5)
+        contentView.layer.cornerRadius = 8
+        imageView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner] //top left, top right
+        imageView.layer.cornerRadius = 8
     }
     
     //MARK: - Layout
