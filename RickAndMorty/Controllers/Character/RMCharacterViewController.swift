@@ -17,11 +17,16 @@ final class RMCharacterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        title = "Character"
+        setup()
         layout()
     }
     
+    //MARK: - Private
+    private func setup() {
+        view.backgroundColor = .systemBackground
+        title = "Character"
+        characterListView.delegate = self
+    }
     
     //MARK: - Layout
     private func layout() {
@@ -33,5 +38,13 @@ final class RMCharacterViewController: UIViewController {
             characterListView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
             characterListView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
         ])
+    }
+}
+
+//MARK: - RMCharacterListViewDelegate
+extension RMCharacterViewController: RMCharacterListViewDelegate {
+    func shouldShowCharacterDetail(_ character: RMCharacter) {
+        let detailVC = RMCharacterDetailViewController(charater: character)
+        navigationController?.pushViewController(detailVC, animated: true)
     }
 }

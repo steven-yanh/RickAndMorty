@@ -7,14 +7,22 @@
 
 import UIKit
 
+protocol RMCharacterListViewDelegate: AnyObject {
+    func shouldShowCharacterDetail(_ character: RMCharacter)
+}
+
 final class RMCharacterListView: UIView {
     
+    //MARK: - Logic Component
     private let viewModel = RMCharacterListViewViewModel()
     
+    weak var delegate: RMCharacterListViewDelegate?
+    
+    //MARK: - UI Component
     private lazy var collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 10, bottom: 10, right: 10)
+        layout.sectionInset = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.register(RMCharacterListCell.self, forCellWithReuseIdentifier: RMCharacterListCell.cellIdentifier)
@@ -52,6 +60,10 @@ final class RMCharacterListView: UIView {
 
 //MARK: - RMCharacterListViewViewModelDelegate
 extension RMCharacterListView: RMCharacterListViewViewModelDelegate {
+    func didSelectCharacer(_ character: RMCharacter) {
+        delegate?.shouldShowCharacterDetail(character)
+    }
+    
     func didFetchInitalCharacters() {
          
         DispatchQueue.main.async { [weak self] in

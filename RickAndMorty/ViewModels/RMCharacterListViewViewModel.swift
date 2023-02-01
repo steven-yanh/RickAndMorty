@@ -9,6 +9,7 @@ import UIKit
 
 protocol RMCharacterListViewViewModelDelegate: AnyObject {
     func didFetchInitalCharacters()
+    func didSelectCharacer(_ character: RMCharacter)
 }
 
 final class RMCharacterListViewViewModel: NSObject,
@@ -67,6 +68,8 @@ final class RMCharacterListViewViewModel: NSObject,
     
     //MARK: - Delegate
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let character = characters[indexPath.row]
+        delegate?.didSelectCharacer(character)
         collectionView.deselectItem(at: indexPath, animated: false)
     }
     

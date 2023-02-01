@@ -72,7 +72,7 @@ class RMCharacterListCell: UICollectionViewCell {
     private func style() {
         contentView.layer.shadowColor = UIColor.systemGray2.cgColor
         contentView.layer.shadowOpacity = 0.7
-        contentView.layer.shadowOffset = CGSize(width: -5, height: 5)
+        contentView.layer.shadowOffset = CGSize(width: -5, height: 7)
         contentView.layer.cornerRadius = 8
         imageView.layer.maskedCorners = [.layerMinXMinYCorner,.layerMaxXMinYCorner] //top left, top right
         imageView.layer.cornerRadius = 8
