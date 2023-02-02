@@ -36,6 +36,7 @@
 		3B774CF9298895B800575668 /* UIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B774CF8298895B800575668 /* UIView.swift */; };
 		3B774CFC29889A6200575668 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B774CFB29889A6200575668 /* Constant.swift */; };
 		3BD50263298AF71700682718 /* RMCharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD50262298AF71600682718 /* RMCharacterDetailViewController.swift */; };
+		3BD50265298B1A4800682718 /* RMFooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD50264298B1A4800682718 /* RMFooterLoadingCollectionReusableView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		3B774CF8298895B800575668 /* UIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIView.swift; sourceTree = "<group>"; };
 		3B774CFB29889A6200575668 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		3BD50262298AF71600682718 /* RMCharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterDetailViewController.swift; sourceTree = "<group>"; };
+		3BD50264298B1A4800682718 /* RMFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +102,13 @@
 			path = Foundation;
 			sourceTree = "<group>";
 		};
-		3B122F6B2989CE5D0017E4A7 /* TableCells */ = {
+		3B122F6B2989CE5D0017E4A7 /* CollectionView */ = {
 			isa = PBXGroup;
 			children = (
 				3B122F6C2989CE990017E4A7 /* RMCharacterListCell.swift */,
+				3BD50264298B1A4800682718 /* RMFooterLoadingCollectionReusableView.swift */,
 			);
-			path = TableCells;
+			path = CollectionView;
 			sourceTree = "<group>";
 		};
 		3B122F6E2989DC050017E4A7 /* TableCells */ = {
@@ -191,8 +194,8 @@
 		3B774CCA297E415F00575668 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				3B122F6E2989DC050017E4A7 /* TableCells */,
 				3B774CF5298891BE00575668 /* RMCharacterListViewViewModel.swift */,
+				3B122F6E2989DC050017E4A7 /* TableCells */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -201,7 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				3B774CF3298891AF00575668 /* RMCharacterListView.swift */,
-				3B122F6B2989CE5D0017E4A7 /* TableCells */,
+				3B122F6B2989CE5D0017E4A7 /* CollectionView */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -366,6 +369,7 @@
 				3BD50263298AF71700682718 /* RMCharacterDetailViewController.swift in Sources */,
 				3B122F6429889F910017E4A7 /* RMCharacterList.swift in Sources */,
 				3B725A42297E36F300A137FE /* AppDelegate.swift in Sources */,
+				3BD50265298B1A4800682718 /* RMFooterLoadingCollectionReusableView.swift in Sources */,
 				3B774CFC29889A6200575668 /* Constant.swift in Sources */,
 				3B774CE32983A1E200575668 /* RMRequest.swift in Sources */,
 				3B725A44297E36F300A137FE /* SceneDelegate.swift in Sources */,

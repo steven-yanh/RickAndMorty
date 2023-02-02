@@ -9,7 +9,9 @@ import Foundation
 
 final class RMRequest {
     
-    private let baseUrl = "https://rickandmortyapi.com/api/"
+    struct K {
+        static let baseUrl = "https://rickandmortyapi.com/api/"
+    }
     
     private let endpoint: RMEndpoint
     
@@ -18,7 +20,7 @@ final class RMRequest {
     private let queryParameters: [URLQueryItem]
     
     var urlString: String {
-        var urlString = baseUrl + endpoint.rawValue
+        var urlString = K.baseUrl + endpoint.rawValue
         
         if !paths.isEmpty {
             let pathString = paths.joined(separator: ",")
@@ -49,10 +51,62 @@ final class RMRequest {
         return URL(string: urlString)
     }
     
+    //MARK: - Inititalizer
     public init(endpoint: RMEndpoint, paths: [String] = [], queryParameters: [URLQueryItem] = []) {
         self.endpoint = endpoint
         self.paths = paths
         self.queryParameters = queryParameters
+    }
+    
+    convenience init?(url: URL) {
+        let string = url.absoluteString
+        if !string.contains(K.baseUrl) {
+           return nil
+        }
+        
+        let trimmed = string.replacingOccurrences(of: K.baseUrl, with: "")
+        if trimmed.contains("/") {
+            var components = trimmed.components(separatedBy: "/")
+            if !components.isEmpty, let endpoint = RMEndpoint(rawValue: components[0]) {
+                components.removeFirst()
+                if !components.isEmpty && components[0].contains("=") {
+                    let queryItemStrings = components[0].components(separatedBy: "&")
+                    var queryItems = [URLQueryItem]()
+                    for queryItemString in queryItemStrings {
+                        let traits = queryItemString.components(separatedBy: "=")
+                        queryItems.append(URLQueryItem(name: traits[0], value: traits[1]))
+                    }
+                    self.init(endpoint: endpoint, queryParameters: queryItems)
+                    return
+                } else if !components.isEmpty  { //paths
+                    let pathString = components[0]
+                    let paths = pathString.components(separatedBy: ",")
+                    self.init(endpoint: endpoint, paths: paths)
+                    return
+                }
+                self.init(endpoint: endpoint)
+                return
+            }
+        } else if trimmed.contains("?") {
+            var components = trimmed.components(separatedBy: "?")
+            if !components.isEmpty, let endpoint = RMEndpoint(rawValue: components[0]) {
+                components.removeFirst()
+                if !components.isEmpty {
+                    let queryItemStrings = components[0].components(separatedBy: "&")
+                    var queryItems = [URLQueryItem]()
+                    for queryItemString in queryItemStrings {
+                        let traits = queryItemString.components(separatedBy: "=")
+                        queryItems.append(URLQueryItem(name: traits[0], value: traits[1]))
+                    }
+                    self.init(endpoint: endpoint, queryParameters: queryItems)
+                    return
+                }
+                self.init(endpoint: endpoint)
+                return
+            }
+        }
+        
+        return nil
     }
     
     //MARK: - Quick request
