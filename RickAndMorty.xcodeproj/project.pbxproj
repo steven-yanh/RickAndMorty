@@ -37,6 +37,7 @@
 		3B774CFC29889A6200575668 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B774CFB29889A6200575668 /* Constant.swift */; };
 		3BD50263298AF71700682718 /* RMCharacterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD50262298AF71600682718 /* RMCharacterDetailViewController.swift */; };
 		3BD50265298B1A4800682718 /* RMFooterLoadingCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD50264298B1A4800682718 /* RMFooterLoadingCollectionReusableView.swift */; };
+		3BD50267298CB04600682718 /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BD50266298CB04600682718 /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -72,6 +73,7 @@
 		3B774CFB29889A6200575668 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		3BD50262298AF71600682718 /* RMCharacterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMCharacterDetailViewController.swift; sourceTree = "<group>"; };
 		3BD50264298B1A4800682718 /* RMFooterLoadingCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RMFooterLoadingCollectionReusableView.swift; sourceTree = "<group>"; };
+		3BD50266298CB04600682718 /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -187,6 +189,7 @@
 				3B774CE02983A1D900575668 /* RMService.swift */,
 				3B774CE22983A1E200575668 /* RMRequest.swift */,
 				3B774CE42983A1EF00575668 /* RMEndpoint.swift */,
+				3BD50266298CB04600682718 /* ImageLoader.swift */,
 			);
 			path = APICaller;
 			sourceTree = "<group>";
@@ -360,6 +363,7 @@
 				3B774CD0297E420100575668 /* RMLocation.swift in Sources */,
 				3B774CD7297E436900575668 /* RMTabBarViewController.swift in Sources */,
 				3B774CE12983A1D900575668 /* RMService.swift in Sources */,
+				3BD50267298CB04600682718 /* ImageLoader.swift in Sources */,
 				3B122F702989DC140017E4A7 /* RMCharacterListCellViewModel.swift in Sources */,
 				3B774CD9297E439000575668 /* RMCharacterViewController.swift in Sources */,
 				3B122F6A2988BA750017E4A7 /* String.swift in Sources */,

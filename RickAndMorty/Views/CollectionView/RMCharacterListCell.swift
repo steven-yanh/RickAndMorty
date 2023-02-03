@@ -56,11 +56,11 @@ class RMCharacterListCell: UICollectionViewCell {
         name.text = viewModel.name
         status.text = "Status: \(viewModel.statusText)"
         
-        viewModel.downloadImage { [weak self]result in
+        RMImageLoader.shared.downloadImage(viewModel.imageUrl) { [weak self] result in
             switch result {
-            case .success(let image):
+            case .success(let data):
                 DispatchQueue.main.async {
-                    self?.imageView.image = image
+                    self?.imageView.image = UIImage(data: data)
                 }
             case.failure(let error):
                 print(error.localizedDescription)

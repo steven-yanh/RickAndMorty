@@ -11,8 +11,8 @@ import UIKit
 class RMCharacterListCellViewModel {
     
     public let name: String
+    public let imageUrl: URL?
     private let status: RMCharacterStatus
-    private let imageUrl: URL?
     
     init(_ name: String, _ status: RMCharacterStatus, _ imageUrl: URL?) {
         self.name = name
@@ -22,22 +22,5 @@ class RMCharacterListCellViewModel {
     
     public var statusText: String {
         return status.text
-    }
-    
-    public func downloadImage(completion: @escaping (Result<UIImage?, Error>) -> Void) {
-        guard let url = imageUrl else {
-            completion(.failure(URLError(.badURL)))
-            return
-        }
-        let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request) { data, _, error in
-            guard let data = data, error == nil else {
-                completion(.failure(URLError(.badServerResponse)))
-                return
-            }
-            
-            let image = UIImage(data: data)
-            completion(.success(image))
-        }.resume()
     }
 }

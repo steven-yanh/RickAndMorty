@@ -101,7 +101,6 @@ final class RMCharacterListViewViewModel: NSObject,
         }
     }
     
-    //MARK: - Protocol implementation
     //MARK: - DataSource
     /// DataSource for the Cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
