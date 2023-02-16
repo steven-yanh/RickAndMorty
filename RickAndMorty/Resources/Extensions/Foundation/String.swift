@@ -15,5 +15,7 @@ extension String {
     
     static let put = "PUT"
     
+    static let patch = "PATCH"
+    
     static let delete = "DELETE"
 }

@@ -13,13 +13,14 @@ class RMCharacterDetailViewController: UIViewController {
     private let character: RMCharacter
     
     //MARK: - UI Component
+    private let detailView: RMCharacterDetailView
     
     //MARK: - Init
-    init(charater: RMCharacter) {
-        self.character = charater
+    init(character: RMCharacter) {
+        self.character = character
+        self.detailView = RMCharacterDetailView(frame: .zero, character: character)
         super.init(nibName: nil, bundle: nil)
     }
-    
     required init?(coder: NSCoder) {
         fatalError("Unsupported")
     }
@@ -28,6 +29,7 @@ class RMCharacterDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        layout()
     }
     
     //MARK: - Private
@@ -35,5 +37,16 @@ class RMCharacterDetailViewController: UIViewController {
         view.backgroundColor = .systemBackground
         title = character.name
         navigationItem.largeTitleDisplayMode = .never
+    }
+    private func layout() {
+        view.addSubviews(detailView)
+        detailView.translatesAutoresizingMaskIntoConstraints = false
+        
+        NSLayoutConstraint.activate([
+            detailView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            detailView.leftAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leftAnchor),
+            detailView.rightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.rightAnchor),
+            detailView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor),
+        ])
     }
 }

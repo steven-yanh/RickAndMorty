@@ -44,7 +44,7 @@ final class RMCharacterViewController: UIViewController {
 //MARK: - RMCharacterListViewDelegate
 extension RMCharacterViewController: RMCharacterListViewDelegate {
     func shouldShowCharacterDetail(_ character: RMCharacter) {
-        let detailVC = RMCharacterDetailViewController(charater: character)
+        let detailVC = RMCharacterDetailViewController(character: character)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
