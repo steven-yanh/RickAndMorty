@@ -37,7 +37,6 @@ class RMCharacterListCell: UICollectionViewCell {
     //MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = .secondarySystemBackground
         layout()
         style()
     }
@@ -70,6 +69,7 @@ class RMCharacterListCell: UICollectionViewCell {
     
     //MARK: - Styling
     private func style() {
+        contentView.backgroundColor = .secondarySystemBackground
         contentView.layer.shadowColor = UIColor.systemGray2.cgColor
         contentView.layer.shadowOpacity = 0.7
         contentView.layer.shadowOffset = CGSize(width: -5, height: 7)

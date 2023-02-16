@@ -31,7 +31,7 @@ final class RMCharacterDetailViewViewModel: NSObject {
     
     //MARK: - Create Sections
     private func setupSections() {
-        sections = [.photo(viewModel: .init()),
+        sections = [.photo(viewModel: .init(imageUrl: URL(string: character.image))),
                     .info(viewModels: [RMCharacterInfoCollectionViewCellViewModel(),
                                        RMCharacterInfoCollectionViewCellViewModel(),
                                        RMCharacterInfoCollectionViewCellViewModel(),
@@ -45,9 +45,9 @@ final class RMCharacterDetailViewViewModel: NSObject {
     public func createPhotoSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
                                                             heightDimension: .fractionalHeight(1.0)))
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10)
         let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
-                                                                       heightDimension: .fractionalHeight(0.5)),
+                                                                       heightDimension: .fractionalHeight(0.55)),
                                                      subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
         return section
@@ -98,15 +98,15 @@ extension RMCharacterDetailViewViewModel: UICollectionViewDelegate, UICollection
         let section = indexPath.section
         let sectionType = sections[section]
         switch sectionType {
-        case .photo:
+        case .photo(let viewModel):
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RMCharacterPhotoCollectionViewCell.cellIdentifier,
                 for: indexPath) as? RMCharacterPhotoCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.backgroundColor = .purple
+            cell.configure(with: viewModel)
             return cell
-        case .info:
+        case .info(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RMCharacterInfoCollectionViewCell.cellIdentifier,
                 for: indexPath) as? RMCharacterInfoCollectionViewCell else {
@@ -114,7 +114,7 @@ extension RMCharacterDetailViewViewModel: UICollectionViewDelegate, UICollection
             }
             cell.backgroundColor = .yellow
             return cell
-        case .episodes:
+        case .episodes(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RMCharacterEpisodeCollectionViewCell.cellIdentifier,
                 for: indexPath) as? RMCharacterEpisodeCollectionViewCell else {
