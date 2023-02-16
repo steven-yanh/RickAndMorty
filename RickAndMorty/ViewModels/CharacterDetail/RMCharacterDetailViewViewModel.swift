@@ -34,6 +34,7 @@ final class RMCharacterDetailViewViewModel: NSObject {
         sections = [.photo(viewModel: .init()),
                     .info(viewModels: [RMCharacterInfoCollectionViewCellViewModel(),
                                        RMCharacterInfoCollectionViewCellViewModel(),
+                                       RMCharacterInfoCollectionViewCellViewModel(),
                                        RMCharacterInfoCollectionViewCellViewModel(),]),
                     .episodes(viewModels: [RMCharacterEpisodeCollectionViewCellViewModel(),
                                            RMCharacterEpisodeCollectionViewCellViewModel(),
@@ -53,12 +54,12 @@ final class RMCharacterDetailViewViewModel: NSObject {
     }
     
     public func createInfoSection() -> NSCollectionLayoutSection {
-        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(0.5),
                                                             heightDimension: .fractionalHeight(1.0)))
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
-                                                                       heightDimension: .fractionalHeight(0.5)),
-                                                     subitems: [item])
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 5, bottom: 10, trailing: 5)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
+                                                                       heightDimension: .absolute(150)),
+                                                     subitems: [item, item])
         let section = NSCollectionLayoutSection(group: group)
         return section
     }
@@ -66,11 +67,13 @@ final class RMCharacterDetailViewViewModel: NSObject {
     public func createEpisodeSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
                                                             heightDimension: .fractionalHeight(1.0)))
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 10, trailing: 0)
-        let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
-                                                                       heightDimension: .fractionalHeight(0.5)),
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 0)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(0.6),
+                                                                       heightDimension: .fractionalHeight(0.2)),
                                                      subitems: [item])
+        
         let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuous
         return section
     }
 }
@@ -117,7 +120,7 @@ extension RMCharacterDetailViewViewModel: UICollectionViewDelegate, UICollection
                 for: indexPath) as? RMCharacterEpisodeCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.backgroundColor = .systemPink
+            cell.backgroundColor = .blue
             return cell
         }
     }
