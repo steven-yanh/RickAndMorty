@@ -32,10 +32,15 @@ final class RMCharacterDetailViewViewModel: NSObject {
     //MARK: - Create Sections
     private func setupSections() {
         sections = [.photo(viewModel: .init(imageUrl: URL(string: character.image))),
-                    .info(viewModels: [RMCharacterInfoCollectionViewCellViewModel(),
-                                       RMCharacterInfoCollectionViewCellViewModel(),
-                                       RMCharacterInfoCollectionViewCellViewModel(),
-                                       RMCharacterInfoCollectionViewCellViewModel(),]),
+                    .info(viewModels: [.init(type: .gender, value: character.gender.rawValue),
+                                       .init(type: .status, value: character.status.rawValue),
+                                       .init(type: .species, value: character.species),
+                                       .init(type: .type, value: character.type),
+                                       .init(type: .origin, value: character.origin.name),
+                                       .init(type: .location, value: character.location.name),
+                                       .init(type: .created, value: character.created),
+                                       .init(type: .episodeCount, value: String(character.episode.count)),
+                    ]),
                     .episodes(viewModels: [RMCharacterEpisodeCollectionViewCellViewModel(),
                                            RMCharacterEpisodeCollectionViewCellViewModel(),
                                            RMCharacterEpisodeCollectionViewCellViewModel(),
@@ -45,7 +50,7 @@ final class RMCharacterDetailViewViewModel: NSObject {
     public func createPhotoSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
                                                             heightDimension: .fractionalHeight(1.0)))
-        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 10, trailing: 10)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 10, bottom: 20, trailing: 10)
         let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1.0),
                                                                        heightDimension: .fractionalHeight(0.55)),
                                                      subitems: [item])
@@ -112,7 +117,8 @@ extension RMCharacterDetailViewViewModel: UICollectionViewDelegate, UICollection
                 for: indexPath) as? RMCharacterInfoCollectionViewCell else {
                 return UICollectionViewCell()
             }
-            cell.backgroundColor = .yellow
+            let viewModel = viewModels[indexPath.row]
+            cell.configure(with: viewModel)
             return cell
         case .episodes(let viewModels):
             guard let cell = collectionView.dequeueReusableCell(
@@ -120,6 +126,7 @@ extension RMCharacterDetailViewViewModel: UICollectionViewDelegate, UICollection
                 for: indexPath) as? RMCharacterEpisodeCollectionViewCell else {
                 return UICollectionViewCell()
             }
+            let viewModel = viewModels[indexPath.row]
             cell.backgroundColor = .blue
             return cell
         }
